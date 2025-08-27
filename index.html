@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Motivation for You 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
+      background-size: 1000% 1000%;
+      animation: gradient 15s ease infinite;
+      color: white;
+      text-align: center;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      font-size: 20px;
+      animation: floatUp 8s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {transform: translateY(0) scale(1);}
+      100% {transform: translateY(-110vh) scale(1.5);}
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background: rgba(0,0,0,0.3);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease;
+    }
+
+    .show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      background: #ff85a2;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="content">
+    <h2>🌸 Hey, just a reminder...</h2>
+    <p>You are stronger than you think, more amazing than you believe, and capable of more than you imagine.  
+    Keep smiling, the world is brighter because of you 💖</p>
+    <button onclick="startInteraction()">Click here</button>
+  </div>
+
+  <div class="footer">
+    Instagram & Discord: <b>@arsyushh</b>
+  </div>
+
+  <script>
+    const content = document.getElementById("content");
+    let noCount = 0;
+
+    window.onload = () => setTimeout(()=>content.classList.add("show"),100);
+
+    function startInteraction() {
+      updateContent(`
+        <h2>I motivated you 💫</h2>
+        <p>Now you have to say me cute 😌</p>
+        <button onclick="sayYes()">Yes</button>
+        <button onclick="sayNo()">No</button>
+      `);
+    }
+
+    function sayYes() {
+      updateContent(`<h2>aww thanks 💖🥺</h2>`);
+      setTimeout(()=>window.close(),6000); // auto close after 6s
+    }
+
+    function sayNo() {
+      noCount++;
+      let messages = [
+        "🥺 why you so rude? say me cute please...",
+        "😢 it really hurts... just say me cute...",
+        "💔 still no? you're breaking my heart...",
+        "😭 come on... you know I'm cute...",
+        "😞 this is painful...",
+        "😔 please stop saying no...",
+        "😖 you’re making me cry...",
+        "😣 okay… last warning...",
+        "😫 do you enjoy hurting me?",
+        "😩 still no?!",
+        "😡 don’t test my patience...",
+        "😠 bro… say it already...",
+        "😤 you’re pushing me...",
+        "🤨 now this is annoying...",
+        "😒 come on dude...",
+        "🙄 you’re impossible...",
+        "😕 why so harsh?",
+        "😟 I trusted you...",
+        "🥴 still no??",
+        "🤯 are you serious?",
+        "😑 enough already...",
+        "😬 you’re cold...",
+        "😵‍💫 don’t break me...",
+        "🤕 you hurt my soul...",
+        "😔 I feel betrayed...",
+        "😣 you monster...",
+        "😖 why??",
+        "💢 you’re testing me...",
+        "🔥 don’t push me...",
+        "😡 STOP SAYING NO!",
+        "😠 SAY YES NOW!",
+        "😤 bro I’m mad...",
+        "🤬 arghhhhhhh...",
+        "👿 you’re evil...",
+        "💀 fine… destroy me then...",
+        "🖤 no humanity...",
+        "⚡ enough jokes, say it...",
+        "🌪️ rage building...",
+        "☠️ my patience died...",
+        "🔥🔥🔥 I SAID SAY YES!",
+        "🤬🤬🤬 STOP!",
+        "😡😡😡 I’M ANGRY!",
+        "😤😤😤 you’re impossible!",
+        "💢💢💢 FINE!",
+        "💣 exploding soon...",
+        "💥 my anger maxed...",
+        "🚨 last warning...",
+        "🤯 FINAL TIME...",
+        "👹 NOW SAY YES OR ELSE..."
+      ];
+      let msg = messages[Math.min(noCount-1, messages.length-1)];
+      updateContent(`
+        <p>${msg}</p>
+        <button onclick="sayYes()">Yes</button>
+        <button onclick="sayNo()">No</button>
+      `);
+    }
+
+    function updateContent(html) {
+      content.classList.remove("show");
+      setTimeout(()=>{
+        content.innerHTML = html;
+        content.classList.add("show");
+      },600);
+    }
+
+    // Floating hearts generator
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => {heart.remove();}, 8000);
+    }
+    setInterval(createHeart, 700);
+  </script>
+</body>
+</html>
